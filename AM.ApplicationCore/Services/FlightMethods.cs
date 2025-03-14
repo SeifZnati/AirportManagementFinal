@@ -6,7 +6,7 @@ namespace AM.ApplicationCore.Services
 {
     public class FlightMethods : IFlightMethods
     {
-        public List<Flight> Flights { get; set; } = new List<Flight> { };
+        public List<Flight> Flights { get; set; } = [];
 
         public Action<Domain.Plane> FlightDetailsDel;
         public Func<string,float> DurationAverageDel;
@@ -208,22 +208,22 @@ namespace AM.ApplicationCore.Services
             return lambdaQuery.Count();
         }
 
-        public IList<Traveller> SeniorTravellers(Flight flight)
-        {
-            //return flight.ListPassengers
-            //             .OfType<Traveller>()
-            //             .OrderByDescending(p => p.BirthDate)
-            //             .Take(3)
-            //             .ToList();
+        //public IList<Traveller> SeniorTravellers(Flight flight)
+        //{
+        //    //return flight.ListPassengers
+        //    //             .OfType<Traveller>()
+        //    //             .OrderByDescending(p => p.BirthDate)
+        //    //             .Take(3)
+        //    //             .ToList();
 
-            var lambdaQuery = flight.ListPassengers
-                .OfType<Traveller>()
-                .OrderByDescending(p => p.BirthDate)
-                .Take(3)
-                .ToList();
+        //    var lambdaQuery = flight.ListPassengers
+        //        .OfType<Traveller>()
+        //        .OrderByDescending(p => p.BirthDate)
+        //        .Take(3)
+        //        .ToList();
 
-            return lambdaQuery.ToList();
-        }
+        //    return lambdaQuery.ToList();
+        //}
 
         public void ShowFlightDetails(Domain.Plane plane)
         {

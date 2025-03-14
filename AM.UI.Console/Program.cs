@@ -1,5 +1,6 @@
 ﻿using AM.ApplicationCore.Domain;
 using AM.ApplicationCore.Services;
+using AM.Infrastructure;
 
 /****** Atelier 1 ******/
 
@@ -23,12 +24,20 @@ using AM.ApplicationCore.Services;
 //Console.WriteLine(plane3.ToString());
 //Console.WriteLine(plane4.ToString());
 
-Passenger passenger = new Passenger
+Passenger passenger = new()
 {
-    FirstName = "seif",
-    LastName = "ZNATI",
+    FullName = new FullName
+    {
+        FirstName = "seif",
+        LastName = "ZNATI"
+    },
     EmailAddress = "seifeddine.znati@esprit.tn"
 };
+Console.WriteLine("Before Extension");
+Console.WriteLine(passenger.ToString());
+Console.WriteLine("After Extension");
+passenger.UpperFullName();
+Console.WriteLine(passenger.ToString());
 Console.WriteLine("Before Extension");
 Console.WriteLine(passenger.ToString());
 Console.WriteLine("After Extension");
@@ -55,7 +64,7 @@ Console.WriteLine(passenger.ToString());
 //traveller.PassengerType();
 
 /*******Atelier 2*******/
-FlightMethods flightMethods = new FlightMethods
+FlightMethods flightMethods = new()
 {
     Flights = TestData.listFlights
 };
@@ -80,10 +89,10 @@ foreach (var item in flightMethods.OrderedDurationFlights())
 
 Console.WriteLine("Senior Travellers");
 
-foreach (var item in flightMethods.SeniorTravellers(TestData.flight1))
-{
-    Console.WriteLine(item.ToString());
-}
+//foreach (var item in flightMethods.SeniorTravellers(TestData.flight1))
+//{
+//    Console.WriteLine(item.ToString());
+//}
 
 flightMethods.DestinationGroupedFlights();
 
@@ -100,3 +109,9 @@ foreach (var group in groupedFlights)
 Console.WriteLine("Delegate Functions");
 flightMethods.ShowFlightDetails(TestData.BoingPlane);
 Console.WriteLine(flightMethods.DurationAverage("Paris"));
+
+AMContext context = new AMContext();
+//context.Flights.Add(TestData.flight2);
+//context.SaveChanges();
+
+Console.WriteLine(context.Flights.First().Plane.Capacity);
