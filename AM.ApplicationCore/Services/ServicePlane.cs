@@ -39,5 +39,30 @@ namespace AM.ApplicationCore.Services
                 .Distinct()
                 .ToList();
         }
+
+        public IList<Flight> getNFlightsOrderdByDate(int n)
+        {
+            return GetAll().OrderByDescending(p => p.PlaneId)
+                .Take(n)
+                .SelectMany(f => f.ListFlights)
+                .OrderBy(f => f.FlightDate)
+                .ToList();
+        }
+
+        public bool IsAvailable(int n, Flight flight)
+        {
+            int capacity = flight.Plane.Capacity;
+            int tickets = flight.ListTickets.Count;
+            return n >= capacity - tickets;
+        }
+
+        public void DeleteOldPlanes()
+        {
+            IList<Plane> planes = GetMany(p => (DateTime.Now.Year - p.ManufactureDate.Year) > 10).ToList();
+            foreach (Plane plane in planes)
+            {
+                Delete(plane);
+            }
+        }
     }
 }

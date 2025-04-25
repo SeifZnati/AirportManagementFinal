@@ -9,6 +9,7 @@ namespace AM.ApplicationCore.Interfaces
 {
     public interface IServiceFlight:IService<Flight>
     {
-
+        IList<Staff> GetStaff(int flightId);
+        IList<Traveller> GetPassenger(Plane plane, DateTime date);
     }
 }

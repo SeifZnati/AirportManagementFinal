@@ -15,5 +15,25 @@ namespace AM.ApplicationCore.Services
         {
             this.unitOfWork = unitOfWork;
         }
+        public IList<Staff> GetStaff(int flightId)
+        {
+         
+            return GetById(flightId).ListTickets
+                .Select(t => t.MyPassenger)
+                .OfType<Staff>()
+                .Distinct()
+                .ToList();
+        }
+
+        public IList<Traveller> GetTravellers(Plane plane, DateTime date)
+        {
+            return plane.ListFlights.Where(f => f.FlightDate == date)
+                .SelectMany(f => f.ListTickets)
+                .Select(t => t.MyPassenger)
+                .OfType<Traveller>()
+                .Distinct()
+                .ToList();
+        }
+
     }
 }
