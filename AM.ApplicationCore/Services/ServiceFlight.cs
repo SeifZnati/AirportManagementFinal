@@ -15,6 +15,12 @@ namespace AM.ApplicationCore.Services
         {
             this.unitOfWork = unitOfWork;
         }
+
+        public IList<Traveller> GetPassenger(Plane plane, DateTime date)
+        {
+            throw new NotImplementedException();
+        }
+
         public IList<Staff> GetStaff(int flightId)
         {
          
