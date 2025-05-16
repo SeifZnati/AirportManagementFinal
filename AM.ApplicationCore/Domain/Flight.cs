@@ -22,6 +22,7 @@ namespace AM.ApplicationCore.Domain
         public virtual ICollection<Ticket> ListTickets { get; set; }
         //public ICollection<Passenger> ListPassengers { get; set; }
         public string? AirlineLogo { get; set; }
+        public string? Pilot { get; set; }
 
         public override string ToString()
         {

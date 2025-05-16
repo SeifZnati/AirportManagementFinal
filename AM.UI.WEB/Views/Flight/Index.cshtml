@@ -6,6 +6,19 @@
 
 <h1>Index</h1>
 
+<form asp-action="index">
+    <fieldset>
+        <legend> Recherche</legend>
+        Saisir une date de départ :
+        <input type="date" name="dateDepart" />
+        <input type="submit" value="Serach" />
+    </fieldset>
+</form>
+<form asp-action="Sort">
+    <fieldset>
+        <input type="submit" value="Sort" />
+    </fieldset>
+</form>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -32,6 +45,9 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.AirlineLogo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Pilot)
             </th>
             <th></th>
         </tr>
@@ -65,6 +81,9 @@
                 <a asp-action="Details" asp-route-id="@item.FlightId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.FlightId">Delete</a>
             </td>
+                <td>
+                    <img src="~/uploads/@item.Pilot" width="50" height="50">
+                </td>
         </tr>
 }
     </tbody>
