@@ -81,10 +81,14 @@
                 <a asp-action="Details" asp-route-id="@item.FlightId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.FlightId">Delete</a>
             </td>
-                <td>
-                    <img src="~/uploads/@item.Pilot" width="50" height="50">
-                </td>
+            <td>
+                <img src="~/uploads/@item.Pilot" width="50" height="50">
+            </td>
+            <td colspan="5">
+                    <partial name="_FlightDetails" model="item">
+            </td>
         </tr>
+
 }
     </tbody>
 </table>
